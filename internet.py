@@ -28,7 +28,7 @@ for line in data[4:]:
 print(f'Number of nodes: {G.number_of_nodes()}')
 print(f'Number of edges: {G.number_of_edges()}')
 
-
-
+tools.get_local_clustering_coefficient_dist(G, plot=True)
+print(tools.global_clustering_coefficient(G))
 
 

@@ -1,3 +1,4 @@
+import networkx
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -56,10 +57,47 @@ def get_local_clustering_coefficient_dist(G, plot=False):
         ans.append(local)
 
     if(plot):
-        plt.hist(ans)
+        plt.hist(ans, bins=20)
         plt.show()
     return ans
 
+
+def global_clustering_coefficient(G):
+    # Compute the number of triangles and triplets for each node.
+    triangles = nx.triangles(G)
+    triplets = dict(G.degree())
+
+    # Compute the sum of the number of triangles and triplets.
+    num_triangles = sum(triangles.values())
+    num_triplets = sum(triplets.values())
+
+    # Compute the global clustering coefficient.
+    if num_triplets > 0:
+        return num_triangles / num_triplets
+    else:
+        return 0.0
+
+
+import numpy as np
+
+
+def approx_expansion(G):
+    adj_matrix = networkx.to_numpy_array(G)
+    #Using chegers inequality
+    # Compute the Laplacian matrix of the graph.
+    degree_matrix = np.diag(np.sum(adj_matrix, axis=1))
+    laplacian_matrix = degree_matrix - adj_matrix
+
+    # Compute the second smallest eigenvalue of the Laplacian matrix.
+    eigenvalues, _ = np.linalg.eig(laplacian_matrix)
+    eigenvalues.sort()g
+    second_smallest_eigenvalue = eigenvalues[1]
+
+    # Compute an approximation of the edge expansion using Cheeger's inequality.
+    num_vertices = adj_matrix.shape[0]
+    approx_expansion = np.sqrt(2 * second_smallest_eigenvalue * num_vertices)
+
+    return approx_expansion
 
 
 
