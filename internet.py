@@ -1,6 +1,6 @@
-
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
+import tools
 # Open the file and read the data
 with open('data/as20000102.txt', 'r') as f:
     data = f.read().splitlines()
@@ -28,7 +28,7 @@ for line in data[4:]:
 print(f'Number of nodes: {G.number_of_nodes()}')
 print(f'Number of edges: {G.number_of_edges()}')
 
-# Draw the graph (optional)
-nx.draw(G, with_labels=True)
-plt.show()
-#pretty ugly
+
+
+
+
