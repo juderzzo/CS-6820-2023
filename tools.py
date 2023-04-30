@@ -90,7 +90,7 @@ def approx_expansion(G):
 
     # Compute the second smallest eigenvalue of the Laplacian matrix.
     eigenvalues, _ = np.linalg.eig(laplacian_matrix)
-    eigenvalues.sort()g
+    eigenvalues.sort()
     second_smallest_eigenvalue = eigenvalues[1]
 
     # Compute an approximation of the edge expansion using Cheeger's inequality.
